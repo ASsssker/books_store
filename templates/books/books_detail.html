@@ -6,10 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    {% for book in books %}
-        <a href="{{ book.get_absolute_url}}">{{ book.name }}</a>
-        {{ book.description }}
-        <br>
-    {% endfor %}
+    <img src="{{ book.image.url }}" alt="Error">
+    {{ book.name }}
 </body>
 </html>

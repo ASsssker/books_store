@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 
 # Create your models here.
 
@@ -31,7 +32,6 @@ class Genre(models.Model):
         return f'Жанр: {self.genre_name}'
     
     
-    
 class Book(models.Model):
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50)
@@ -52,6 +52,12 @@ class Book(models.Model):
             models.Index(fields=('name',)),
             models.Index(fields=('-created',))
         ]
+        
+    def get_absolute_url(self):
+        return reverse('books:books_detail', args=[self.id])
+    
+    def __str__(self) -> str:
+        return f'Книга: {self.name}'
     
 
 class Commentary(models.Model):
