@@ -5,7 +5,7 @@ from .models import Author, Genre, Book, Commentary
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'image', 'book_pdf', 'description', 'number_of_pages',
+    list_display = ['name', 'slug', 'image', 'book_pdf', 'number_of_pages',
                     'price', 'price', 'release_date']
     list_filter = ['price']
     filter_horizonta = ['author', 'genre']
@@ -14,12 +14,14 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ['name']
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
-    list_display = ['genre_name']
+    list_display = ['genre_name', 'slug']
+    prepopulated_fields = {'slug': ('genre_name',)}
 
 
 @admin.register(Commentary)
