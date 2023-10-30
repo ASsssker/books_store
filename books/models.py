@@ -33,8 +33,8 @@ class Genre(models.Model):
     
     
 class Book(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    slug = models.SlugField(max_length=50)
+    name = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200)
     image = models.ImageField(upload_to='image/books/%Y/%m/%d')
     book_pdf = models.FileField(upload_to='files/books/%Y/%m/%d', blank=True, null=True)
     description = models.TextField()

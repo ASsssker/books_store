@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+}
+
+/* Горизонтальное меню */
+
+.menu {
+    margin: 0;
+    padding: 0;
+    top: 0px;
+    list-style-type: none;
+    text-align: left;
+    background-color: #333333;
+}
+
+.menu li {
+    display: inline;
+    text-align: center;
+}
+
+.menu form {
+    display: inline-block;
+    padding-left: 70%;
+}
+
+.menu form input[type=text] {
+    padding: 30px;
+}
+
+.menu a {
+    color: white;
+    padding: 20px 10px;
+    text-decoration: none;
+    font-weight: bold;
+    width: 100px;
+    display: inline-block;
+}
+
+.menu a:hover {
+    background-color: #666666;
+}
+
+/* Книги */
+
+.books {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.book {
+    display: flex;
+}
+
+.img {
+    margin-right: 30px;
+}
+
+.img img:hover{
+    width: 210px;
+    height: 310x;
+}
+
+.text {
+    width: 70%;
+}
+
+.text a {
+    color: black;
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 26px;
+    margin-bottom: 100px;
+
+}
+
+.text a:hover {
+    font-size: 28px;
+}
