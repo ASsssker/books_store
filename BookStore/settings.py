@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'books.apps.BooksConfig',
+    'cart.apps.CartConfig'
 ]
 
 MIDDLEWARE = [
@@ -126,7 +127,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#Media files
+# Media files
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_ULR = '/media/'
+
+
+# Cart id
+
+CART_ID = 'cart'
