@@ -1,1 +1,13 @@
 {% extends "base.html" %}
+{% block title %}{{ book.name }}{% endblock title %}
+{% block content %}
+    <div class="book-info">
+        <img src="{{ book.image.url }}" alt="Error">
+        <p><span>{{ book.name }}</span></p>
+        <p><span>Автор</span>: {% for author in book.auhtor.all %}<a href="{% url "books:author_books" author.slug %}">{{ author.name }}</a> {% endfor %}</p>
+        <p><span>Жанр</span>: {% for genre in book.genre.all %}<a href="{% url "books:genre_books" genre.slug %}">{{ genre.genre_name }}</a> {% endfor %}</p>
+        <p><span>Цена</span>: {{ book.price }}</p>
+        <p><span>Описание</span>: {{ book.description }}</p>
+        
+    </div>
+{% endblock content %}

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'books.apps.BooksConfig',
-    'cart.apps.CartConfig'
+    'cart.apps.CartConfig',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'BookStore.urls'
@@ -140,3 +142,9 @@ MEDIA_ULR = 'media/'
 # Cart id
 
 CART_ID = 'cart'
+
+
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

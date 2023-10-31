@@ -67,7 +67,6 @@ body {
 .text a {
     color: black;
     font-family: sans-serif;
-    text-decoration: none;
     font-size: 26px;
     margin-bottom: 100px;
 
@@ -75,4 +74,27 @@ body {
 
 .text a:hover {
     font-size: 28px;
+}
+
+/* Детальная информация */
+
+.book-info {
+    margin: auto;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 20px;
+    font-family: sans-serif;
+    width: 60%;
+}
+
+.book-info img {
+    display: inline-block;
+}
+
+.book-info a {
+    color: black;
+}
+
+span {
+    font-weight: bold;
 }
