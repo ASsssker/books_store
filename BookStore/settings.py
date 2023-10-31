@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'books.apps.BooksConfig',
     'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
     'debug_toolbar',
 ]
 

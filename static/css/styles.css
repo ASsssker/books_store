@@ -105,3 +105,22 @@ span {
     height: 250px;
     width: 150px;
 }
+
+.cart {
+    border-collapse: collapse;
+}
+
+.cart td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .cart tr:nth-child(even){background-color: #f2f2f2;}
+  
+  .cart tr:hover {background-color: #ddd;}
+  
+  .cart th {
+    text-align: left;
+    background-color: white;
+    color: black;
+  }

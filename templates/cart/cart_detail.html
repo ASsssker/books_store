@@ -37,14 +37,24 @@
                 {% csrf_token %}
               </form>
             </td>
-            <td class="num">₽{{ item.price }}</td>
-            <td class="num">₽{{ item.total_price }}</td>
+            <td>₽{{ item.price }}</td>
+            <td>₽{{ item.total_price }}</td>
           </tr>
         {% endwith %}
       {% endfor %}
-      <tr class="total">
-        <td>Общая стоимость</td>
-        <td colspan="4"></td>
+      <tr>
+        <td>
+          <form action="{% url "cart:clear" %}">
+            <input type="submit" value="Очистить">
+          </form>
+        </td>
+        <td>
+          <form action="POST" action="{% url "orders:create" %}">
+            {% csrf_token %}
+            <input type="submit" value="Купить">
+          </form>
+        </td>
+        <td colspan="4">Общая стоимость</td>
         <td class="num">₽{{ cart.get_total_price }}</td>
       </tr>
     </tbody>
