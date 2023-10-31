@@ -11,7 +11,7 @@
     {% block menu %}
     <ul class="menu">
         <li><a href="{% url "books:books_list" %}">Главная</a></li>
-        <li><a href="#">Корзина</a></li>
+        <li><a href="{% url "cart:cart_detail" %}">Корзина</a></li>
         <li>
             <form action="" method="get"></form>
                 <input type="text" placeholder="поиск">

@@ -11,18 +11,18 @@ class Cart:
             cart = self.session[settings.CART_ID] = {}
         self.cart = cart
         
-    def add(self, product:Book, quantity: int, ovveride_quantity: bool=False) -> None:
+    def add(self, product:Book, quantity: int, override_quantity: bool=False) -> None:
         """Добавить товар в корзину.
 
         Args:
             product (Book): Товар.
             quantity (int): Добавляемое количество.
-            ovveride_quantity (bool, optional): При значении True перезаписывает имеющееся количество на переданное (default False).
+            override_quantity (bool, optional): При значении True перезаписывает имеющееся количество на переданное (default False).
         """
         product_id = str(product.id)
         if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 0, 'price': str(product.price)}
-        if ovveride_quantity:
+        if override_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:
             self.cart[product_id]['quantity'] += quantity
@@ -51,7 +51,7 @@ class Cart:
         del self.session[settings.CART_ID]
         self.save()
         
-    def total_price(self) -> Decimal:
+    def get_total_price(self) -> Decimal:
         """Получить суммарную стоимость товаров из корзины.
 
         Returns:

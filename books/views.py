@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
+from cart.forms import AddBookForm
 from .models import Book
 
 # Create your views here.
@@ -23,4 +24,10 @@ class BooksDetailView(DetailView):
     
     def get_queryset(self):
         return super().get_queryset().prefetch_related('auhtor', 'genre')
+    
+    def get_context_data(self, **kwargs) -> dict[str, any]:
+        context = super().get_context_data(**kwargs)
+        context['form'] = AddBookForm() 
+        return context
+    
     

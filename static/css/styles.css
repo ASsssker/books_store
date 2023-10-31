@@ -98,3 +98,10 @@ body {
 span {
     font-weight: bold;
 }
+
+/* Корзина товаров */
+
+.cart img {
+    height: 250px;
+    width: 150px;
+}
