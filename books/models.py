@@ -63,8 +63,15 @@ class Book(models.Model):
 class Commentary(models.Model):
     email = models.EmailField()
     name = models.CharField(max_length=50)
-    status = models.BinaryField(default=True)
+    comment = models.TextField(max_length=250)
+    status = models.BooleanField(default=True)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='comments')
+    created = models.DateTimeField(auto_now_add=True)
     
-    
+    class Meta:
+        ordering = ['-created']
+        indexes = [
+            models.Index(fields=('-created',)),
+            models.Index(fields=('status',))
+        ]   
     

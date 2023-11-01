@@ -9,6 +9,8 @@ from .forms import OrderForm
 
 def create_order(request):
     cart = Cart(request)
+    if not len(cart):
+        return redirect('cart:cart_detail')
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -26,5 +28,5 @@ def create_order(request):
             return redirect(reverse('payment:process'))
     else:
         form = OrderForm()
-        context = {'cart': cart, 'form': form}
+    context = {'cart': cart, 'form': form}
     return render(request, 'orders/create.html', context)

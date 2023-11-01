@@ -4,7 +4,7 @@
     <div class="book-info">
         <img src="{{ book.image.url }}" alt="Error">
         <form action="{% url "cart:add" book.id %}" method="post">
-            {{ form.as_p }}
+            {{ book_form.as_p }}
             {% csrf_token %}
             <input type="submit" value="Добавить в корзину">
         </form>
@@ -13,6 +13,20 @@
         <p><span>Жанр</span>: {% for genre in book.genre.all %}<a href="{% url "books:genre_books" genre.slug %}">{{ genre.genre_name }}</a> {% endfor %}</p>
         <p><span>Цена</span>: {{ book.price }}₽</p>
         <p><span>Описание</span>: {{ book.description }}</p>
+        <form action="{% url "books:add_comment" book.id %}" method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Отправить">
+        </form>
+        {% for comment in comments %}
+        <table class="comment">
+            <tr>
+              <td>{{ comment.created }}</td>
+              <td>{{ comment.name }}</th>
+              <td>{{ comment.email }}</th>
+              <td>{{ comment.comment }}</th>
+            </tr>
+        {% endfor %}
         
     </div>
 {% endblock content %}
