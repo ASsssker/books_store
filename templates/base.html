@@ -13,9 +13,9 @@
         <li><a href="{% url "books:books_list" %}">Главная</a></li>
         <li><a href="{% url "cart:cart_detail" %}">Корзина</a></li>
         <li>
-            <form action="" method="get"></form>
-                <input type="text" placeholder="поиск">
-                <input type="submit" value="Искать">
+            <form id="form" action="{% url "books:search_books" %}" method="get"></form>
+                <input type="text" placeholder="поиск" form="form" name="search">
+                <input type="submit" value="Искать" form="form">
         </li>
     </ul>
     {% endblock menu %}

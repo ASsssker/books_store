@@ -34,6 +34,12 @@ def add_comment(request, pk):
         book = get_object_or_404(Book, id=pk)
         comment.book = book
         comment.save()
-    
+
     return redirect('books:books_detail', pk)
+
+def search_books(request):
+    query = request.GET.get('search')
+    search_res = Book.objects.filter(name__icontains=query)
+    context = {'books': search_res}
+    return render(request, 'books/books_list.html', context)
         

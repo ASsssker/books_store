@@ -13,6 +13,11 @@ body {
     background-color: #333333;
 }
 
+.menu form input[type=text]
+{
+    height: 5px;
+}
+
 .menu li {
     display: inline;
     text-align: center;

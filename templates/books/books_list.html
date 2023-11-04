@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Главная{% endblock title %}
 {% block content %}
+    {% if books %}
     <div class="books">
     {% for book in books %}
         <div class="book">
@@ -11,5 +12,8 @@
             </div>
         </div>
     {% endfor %}
+    {% else %}
+    <p>Ничего не найдено</p>
+    {% endif %}
 </div>
 {% endblock content %}
