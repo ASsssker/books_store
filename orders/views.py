@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from cart.cart import Cart
-from .models import Order, OrderItem
+from .models import OrderItem
 from .forms import OrderForm
 
 
@@ -26,6 +26,7 @@ def create_order(request):
             cart.clear()
             request.session['order_id'] = order.id
             return redirect(reverse('payments:process'))
+        
     else:
         form = OrderForm()
     context = {'cart': cart, 'form': form}

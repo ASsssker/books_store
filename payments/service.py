@@ -1,6 +1,6 @@
 import uuid
 from yookassa import Configuration, Payment
-from django.shortcuts import reverse
+from django.shortcuts import reverse, get_object_or_404
 from django.conf import settings
 from orders.models import Order
 
@@ -11,9 +11,7 @@ Configuration.secret_key = settings.YOOKASA_SECRET_KEY
 
 def create_payment(request, order):
     value = str(order.get_total_cost())
-    # success_url = request.build_absolute_uri(reverse('payment:completed'))
-    # cancel_url = request.build_absolute_uri(reverse('payment:canceled'))
-    success_url = reverse('books:books_list')
+    success_url = request.build_absolute_uri(reverse('books:books_list'))
     
     items = []
     for item in order.items.all():
@@ -52,7 +50,7 @@ def create_payment(request, order):
 
 def payment_succesed(response):
     order_id = response['object']['metadata']['order_id']
-    order = Order.objects.get(id=order_id)
+    order = get_object_or_404(Order, id=order_id)
     
     if response['event'] == 'payment.succeeded':
         order.paid = True
@@ -60,5 +58,8 @@ def payment_succesed(response):
         
     elif response['event'] == 'payment.canceled':
         order.delete()
+    
+    else:
+        return False
     
     return True

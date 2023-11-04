@@ -26,9 +26,13 @@ SECRET_KEY = 'django-insecure-_rb3ut2=ck3dt_qk1b!y9i$(rb)ga7zf^+!w9&*=o$$ed_p!sh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '16bd-2a00-1fa1-434a-be7c-a052-101-bbb4-823d.ngrok-free.app']
+ALLOWED_HOSTS = ['127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://16bd-2a00-1fa1-434a-be7c-a052-101-bbb4-823d.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = []
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 # Application definition
 
@@ -145,12 +149,6 @@ MEDIA_ULR = 'media/'
 # Cart id
 
 CART_ID = 'cart'
-
-
-
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
 
 
 # Данные для ЮКассы
