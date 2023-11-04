@@ -49,9 +49,9 @@
           </form>
         </td>
         <td>
-          <form action="{% url "orders:create" %}">
+          <form action="{% url "payments:process" %}">
             {% csrf_token %}
-            <input type="submit" value="Оформить"{% if not cart|length %}disabled{% endif %} method="post">
+            <input type="submit" value="Купить"{% if not cart|length %}disabled{% endif %}>
           </form>
         </td>
         <td colspan="4">Общая стоимость</td>

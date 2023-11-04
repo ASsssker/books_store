@@ -26,8 +26,9 @@ SECRET_KEY = 'django-insecure-_rb3ut2=ck3dt_qk1b!y9i$(rb)ga7zf^+!w9&*=o$$ed_p!sh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '16bd-2a00-1fa1-434a-be7c-a052-101-bbb4-823d.ngrok-free.app']
 
+CSRF_TRUSTED_ORIGINS = ['https://16bd-2a00-1fa1-434a-be7c-a052-101-bbb4-823d.ngrok-free.app']
 
 # Application definition
 
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'books.apps.BooksConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payments.apps.PaymentsConfig',
     'debug_toolbar',
 ]
 
@@ -149,3 +151,9 @@ CART_ID = 'cart'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+
+# Данные для ЮКассы
+
+YOOKASA_SHOP_ID = 276003
+YOOKASA_SECRET_KEY = 'test_QnkMIed_MoyfBMu4JsC6mCpPM2AxMe05txhMnlmyi2M'

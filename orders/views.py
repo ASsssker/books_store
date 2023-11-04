@@ -25,7 +25,7 @@ def create_order(request):
                 )
             cart.clear()
             request.session['order_id'] = order.id
-            return redirect(reverse('payment:process'))
+            return redirect(reverse('payments:process'))
     else:
         form = OrderForm()
     context = {'cart': cart, 'form': form}
