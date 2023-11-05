@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST, require_GET
+from django.views.decorators.cache import cache_page
 from django.core.exceptions import ObjectDoesNotExist
 from django.http.response import Http404
 from cart.forms import AddBookForm
@@ -21,6 +22,7 @@ def books_detail(request, pk):
 
 
 @require_GET
+@cache_page(60 * 15)
 def books_list(request, author=None, genre=None):
     books = Book.objects.all()
     

@@ -1,12 +1,13 @@
 import uuid
 from yookassa import Configuration, Payment
 from django.shortcuts import reverse, get_object_or_404
-from django.conf import settings
+from BookStore.settings import YOOKASA_SHOP_ID, YOOKASA_SECRET_KEY, EMAIL_HOST_USER
 from orders.models import Order
+from .tasks import payment_succeeded
 
 
-Configuration.account_id = settings.YOOKASA_SHOP_ID
-Configuration.secret_key = settings.YOOKASA_SECRET_KEY
+Configuration.account_id = YOOKASA_SHOP_ID
+Configuration.secret_key = YOOKASA_SECRET_KEY
 
 
 def create_payment(request, order):
@@ -48,18 +49,22 @@ def create_payment(request, order):
     return payment.confirmation.confirmation_url
 
 
-def payment_succesed(response):
+def check_payment_status(response):
     order_id = response['object']['metadata']['order_id']
     order = get_object_or_404(Order, id=order_id)
     
     if response['event'] == 'payment.succeeded':
         order.paid = True
         order.save()
+        payment_succeeded.delay(EMAIL_HOST_USER, order.email)
         
-    elif response['event'] == 'payment.canceled':
-        order.delete()
-    
     else:
-        return False
+        email = order.email
+        order.delete()
+        payment_canceled.delay(EMAIL_HOST_USER, email)
+    
+    # if .....:
+        # return False
+        
     
     return True

@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
+import dotenv
 from pathlib import Path
+
+
+config = dotenv.dotenv_values()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -93,6 +97,15 @@ DATABASES = {
     }
 }
 
+# Caches
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+    }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -153,5 +166,24 @@ CART_ID = 'cart'
 
 # Данные для ЮКассы
 
-YOOKASA_SHOP_ID = 276003
-YOOKASA_SECRET_KEY = 'test_QnkMIed_MoyfBMu4JsC6mCpPM2AxMe05txhMnlmyi2M'
+YOOKASA_SHOP_ID = config['YOOKASA_SHOP_ID']
+YOOKASA_SECRET_KEY = config['YOOKASA_SECRET_KEY']
+
+# Redis settings
+
+REDIS_HOST = config['REDIS_HOST']
+REDIS_PORT = config['REDIS_PORT']
+
+# Celery settings
+
+CELERY_BROKER_URL = config['CELERY_BROKER_URL']
+CELERY_RESULT_BACKEND = config['CELERY_RESULT_BACKEND']
+
+# Email settings
+
+EMAIL_BACKEND = config['EMAIL_BACKEND']
+EMAIL_USE_TLS = config['EMAIL_USE_TLS']
+EMAIL_HOST = config['EMAIL_HOST']
+EMAIL_PORT = config['EMAIL_PORT']
+EMAIL_HOST_USER = config['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = config['EMAIL_HOST_PASSWORD']

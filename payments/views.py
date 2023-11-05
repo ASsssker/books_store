@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 from orders.models import Order
-from .service import create_payment, payment_succesed
+from .service import create_payment, check_payment_status
 
 # Create your views here.
 
@@ -23,6 +23,6 @@ def payment_process(request):
 def listen_status(request):
     if request.method == 'POST':
         response = json.loads(request.body)
-        if payment_succesed(response):
+        if check_payment_status(response):
             return HttpResponse(200)
         return HttpResponse(404)
