@@ -33,9 +33,9 @@ class Genre(models.Model):
     
     
 class Book(models.Model):
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
-    image = models.ImageField(upload_to='image/books/%Y/%m/%d')
+    image = models.ImageField(upload_to='image/books/%Y/%m/%d', blank=True, null=True)
     book_pdf = models.FileField(upload_to='files/books/%Y/%m/%d', blank=True, null=True)
     description = models.TextField()
     number_of_pages = models.PositiveIntegerField()
@@ -43,7 +43,7 @@ class Book(models.Model):
     release_date = models.DateField()
     auhtor = models.ManyToManyField(Author, related_name='books')
     genre = models.ManyToManyField(Genre, related_name='books')
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True, unique=True)
     
     class Meta:
         ordering = ['name']
@@ -74,4 +74,3 @@ class Commentary(models.Model):
             models.Index(fields=('-created',)),
             models.Index(fields=('status',))
         ]   
-    
